@@ -6,23 +6,65 @@ class MenuMakanan extends Component{
   constructor(props){
     super(props);
     this.state = {
-      datalist:0
+      datalist:0,
+      tampil:true
     };
-    this.rubahPesanan = this.rubahPesanan.bind(this);
-    this.pesanan = this.pesanan.bind(this);
+    this.pilihPesanan = this.pilihPesanan.bind(this);
+    this.nasipadang=this.nasipadang.bind(this);
+    this.sate=this.sate.bind(this);
+    this.soto=this.soto.bind(this);
+    this.uduk=this.uduk.bind(this);
+    this.kuning=this.kuning.bind(this);
+    this.batal=this.batal.bind(this);
+  }
+  
+  pilihPesanan(value,e){
+    this.setState({[value]: e.target.value,tampil:true});
   }
 
-  rubahPesanan(){
-    this.setState((state,props)=>{
-      return{
-        pesan:state.props
-      };
+  nasipadang(){
+    this.setState({
+      pesan:"Nasi Padang",
+      jumlah: this.state.datalist + 1,
+      tampil : true
     });
   }
-  pesanan(e){
-    console.log(e.target.value);
+  sate(){
+    this.setState({
+      pesan:"Nasi Padang",
+      jumlah: this.state.datalist + 1,
+      tampil : true
+    });
   }
-
+  soto(){
+    this.setState({
+      pesan:"Nasi Padang",
+      jumlah: this.state.datalist + 1,
+      tampil : true
+    });
+  }
+  uduk(){
+    this.setState({
+      pesan:"Nasi Padang",
+      jumlah: this.state.datalist + 1,
+      tampil : true
+    });
+  }
+  kuning(){
+    this.setState({
+      pesan:"Nasi Padang",
+      jumlah: this.state.datalist + 1,
+      tampil : true
+    });
+  }
+  batal(){
+    this.setState({
+      pesan:"",
+      jumlah: 0,
+      tampil : false
+    });
+  }
+  
   render(){
     return(
       <div>
@@ -57,8 +99,20 @@ class MenuMakanan extends Component{
           </tbody>
           </table>
           <br/>
-          <input type="text" onChange={this.pesanan} />
-          <h3>Pesanan Anda : {this.state.datalist}</h3>
+          <input type="text" placeholder="Masukan Pesanan Anda" onChange={e => this.pilihPesanan("pesan",e)} />
+          <input type="number" placeholder="Jumlah Pesanan" onChange={e => this.pilihPesanan("jumlah",e)} />
+          <button onClick={this.batal}>Batalkan Semua Pesanan</button>
+
+          {this.state.tampil === true ?(
+            <div>
+              <h3>Pesanan Anda : {this.state.pesan}</h3>
+              <h4>Jumlah Pesanan : {this.state.jumlah}</h4>
+            </div>
+          ):(
+            <h1>
+              <center>Anda Belum Memesan</center>
+            </h1>
+          )}
       </div>
     );
   }
